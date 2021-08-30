@@ -1,6 +1,6 @@
 {
   "name": "mp4.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "this package can help you transform remote orignal mp4 to fmp4 timely at browser side.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
