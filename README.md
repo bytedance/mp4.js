@@ -1,9 +1,13 @@
-![](./examples/logo.png)
+<p align="center">
 
+![](./examples/logo.png)
+---
 ![NPM](https://img.shields.io/npm/l/mp4.js)
 ![npm](https://img.shields.io/npm/v/mp4.js)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mp4.js)
 ![npm](https://img.shields.io/npm/dm/mp4.js)
+
+</p>
 
 ### Introduction
 
@@ -82,45 +86,52 @@ you can visit [xgplayer website](https://v2.h5player.bytedance.com/examples/) to
 
 #### MP4 Class
 
-**1. Constructor**
-
 ```js
 let mp4 = new MP4(url,options,chunkSize)
 ```
 
 | parameter  | description   |  optional  |
 | ------- | ---------------- |   ------- |
-| url    | parameter requires remote address of mp4 file which supports CORS | required  |
-| options | parameter include withCredentials and videoOnly | optional |
-| chunkSize | parameter means data length per request which help minimize the network traffic | optional |
+| url    | parameter requires remote address of mp4 file which supports CORS | false  |
+| options | parameter include withCredentials and videoOnly | true |
+| chunkSize | parameter means data length per request which help minimize the network traffic | true |
 
 
 
-**2. Method**
+**Method**
 
 ```js
 mp4.getData(start,end,chunkSize)
 ```
 
-- **_start_** parameter requires initial position by byte (**required**).
-- **_end_** parameter requires end position by byte (**required**).
-- **_chunkSize_** parameter means data length number per request (**optional**).
-- **_return_** Promise instance which outputs object incaluding xhr state.
+| parameter | description | optional |
+| --------- | ----------- | -------- |
+| start     | parameter requires initial position by byte  |  false  |
+| end | parameter requires end position by byte | false|
+| chunkSize | parameter means data length number per request | true |
+| return | Promise instance which outputs object incaluding xhr state | - |
+
 
 Usually you need't use it directly because MP4 provides advanced interface. Of course you can use it control more details.
 
 ```js
 mp4.getMetaInfo(start,end)
 ```
-- **_start_** parameter requires initial position by byte,default is zero (**required**).
-- **_end_** parameter requires end position by byte (**optional**).
+
+| parameter | description | optional |
+| --------- | ----------- | -------- |
+|   start   | parameter requires initial position by byte,default is zero      |  false   |
+|   end     | parameter requires end position by byte        |    true      |
+
 
 this interface can get basic information about the mp4 file such as ftyp、moov、mdat. if succees it will trigger 'moovReady' event and the property mp4.meta is available.
 
 ```js
 mp4.packMeta()
 ```
-- **_return_** Array.buffer
+| parameter | description |
+| --------- | ----------- |
+| return    | Array.buffer |
 
 You know the moov box is indifferent between mp4 and fmp4,so we need repack the moov box. you just call the function once when MSE initialize because it includes ftyp and moov box.
 
@@ -128,8 +139,11 @@ You know the moov box is indifferent between mp4 and fmp4,so we need repack the 
 ```js
 mp4.seek(currentTime)
 ```
-- **_currentTime_** parameter require video.currentTime
-- **_return_** Promise Instance which return Array.buffer
+
+| parameter | description | optional |
+| --------- | ----------- | -------- |
+|currentTime| parameter require video.currentTime         |  false   |
+| return    | Promise Instance which return Array.buffer              |    -     |
 
 in most time, the interface is enough.
 
@@ -139,7 +153,7 @@ mp4.clear()
 
 empty mse buffer cache and download cache.
 
-**3. Event**
+**Event**
 
 ```js
 mp4.once('moovReady',handle)
@@ -148,13 +162,14 @@ mp4.once('error',handle)
 
 #### MP4.MSE Class
 
-**1. Constructor**
-
 ```js
 let mse = new MP4.MSE(codecs)
 ```
-- **_codecs_** parameter is optional,default values is 'video/mp4; codecs="avc1.64001E, mp4a.40.5"'
-- **_return_** MSE instance
+| parameter | description | optional |
+| --------- | ----------- | -------- |
+| codecs    |parameter is optional,default values is 'video/mp4; codecs="avc1.64001E, mp4a.40.5"'               |    true  |
+|  return   |   MSE instance          |    -      |
+
 
 MP4.MSE extends raw MSE API and Event.
 
