@@ -175,7 +175,7 @@ MP4.MSE extends raw MSE API and Event.
 
 ### Other
 
-if you interest in this package, [xgplayer](https://www.npmjs.com/package/xgplayer) and [xgplayer-mp4](https://www.npmjs.com/package/xgplayer-mp4) is better way to learn who gives more usage and compatibility in products.
+if you're interested in this package, [xgplayer](https://www.npmjs.com/package/xgplayer) and [xgplayer-mp4](https://www.npmjs.com/package/xgplayer-mp4) is better way to learn that gives more usage and compatibility in products.
 
 ### License
 
